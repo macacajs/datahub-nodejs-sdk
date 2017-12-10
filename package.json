@@ -1,0 +1,38 @@
+{
+  "name": "datahub-nodejs-sdk",
+  "version": "0.1.0",
+  "description": "DataHub Node.js SDK",
+  "keywords": [
+    "datahub",
+    "client"
+  ],
+  "bin": {
+    "datahub-nodejs-sdk": "./bin/datahub-nodejs-sdk"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/macacajs/datahub-nodejs-sdk.git"
+  },
+  "dependencies": {
+    "request": "^2.83.0",
+    "xutil": "^1.0.7"
+  },
+  "devDependencies": {
+    "co-mocha": "*",
+    "eslint": "*",
+    "eslint-plugin-mocha": "^4.11.0",
+    "mocha": "*",
+    "should": "*",
+    "istanbul": "*",
+    "pre-commit": "*"
+  },
+  "scripts": {
+    "test": "mocha",
+    "lint": "eslint . --fix"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "license": "MIT"
+}
