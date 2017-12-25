@@ -1,7 +1,10 @@
 'use strict';
 
-var datahub-nodejs-sdk = require('..');
+const SDK = require('..');
+const assert = require('assert');
 
-describe('test', function() {
-
+describe('test', () => {
+  it('should be ok', () => {
+    assert.ok(SDK);
+  });
 });

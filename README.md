@@ -22,7 +22,7 @@
 ## Installment
 
 ```bash
-$ npm i datahub-nodejs-sdk -g
+$ npm i datahub-nodejs-sdk --save-dev
 ```
 
 ## License
