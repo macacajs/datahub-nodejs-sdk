@@ -35,7 +35,9 @@ describe('test', function() {
       assert.deepStrictEqual(data[1], {
         method: 'POST',
         credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
         body: 'currentScene=default&delay=2'
       });
     });
@@ -55,7 +57,9 @@ describe('test', function() {
       assert.deepStrictEqual(data[1], {
         method: 'POST',
         credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
         body: 'currentScene=default&delay='
       });
     });
@@ -75,7 +79,9 @@ describe('test', function() {
         assert.deepStrictEqual(data[1], {
           method: 'GET',
           credentials: 'same-origin',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
         });
       });
   });
