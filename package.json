@@ -15,24 +15,27 @@
     "url": "git://github.com/macacajs/datahub-nodejs-sdk.git"
   },
   "dependencies": {
-    "node-fetch": "^1.7.3",
-    "xutil": "^1.0.7"
+    "node-fetch": "1",
+    "xutil": "1"
   },
   "devDependencies": {
-    "co-mocha": "*",
-    "eslint": "*",
-    "eslint-plugin-mocha": "^4.11.0",
-    "mocha": "*",
-    "istanbul": "*",
-    "pre-commit": "*"
+    "eslint": "4",
+    "eslint-plugin-mocha": "4",
+    "istanbul": "0.4.5",
+    "mocha": "4",
+    "pre-commit": "*",
+    "sinon": "4"
   },
   "scripts": {
     "ci": "npm run lint && npm run test",
     "test": "istanbul cover `npm bin`/_mocha",
-    "lint": "eslint . --fix"
+    "lint": "eslint index.js lib bin test --fix"
   },
   "pre-commit": [
     "lint"
   ],
+  "engines": {
+    "node": ">=8"
+  },
   "license": "MIT"
 }
