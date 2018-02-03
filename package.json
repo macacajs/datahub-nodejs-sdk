@@ -20,15 +20,16 @@
   },
   "devDependencies": {
     "eslint": "4",
+    "eslint-config-antife": "^1.0.0",
     "eslint-plugin-mocha": "4",
-    "istanbul": "0.4.5",
     "mocha": "4",
+    "nyc": "^11.4.1",
     "pre-commit": "*",
     "sinon": "4"
   },
   "scripts": {
     "ci": "npm run lint && npm run test",
-    "test": "istanbul cover `npm bin`/_mocha",
+    "test": "nyc --reporter=text-summary --reporter=html `npm bin`/_mocha",
     "lint": "eslint index.js lib bin test --fix"
   },
   "pre-commit": [
