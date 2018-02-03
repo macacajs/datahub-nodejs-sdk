@@ -25,6 +25,10 @@
 $ npm i datahub-nodejs-sdk --save-dev
 ```
 
+## API Documents
+
+[link](//macacajs.github.io/datahub-nodejs-sdk/)
+
 ## License
 
 The MIT License (MIT)
