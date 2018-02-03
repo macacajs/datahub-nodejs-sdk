@@ -5,6 +5,10 @@ const assert = require('assert');
 
 const SDK = require('..');
 
+const config = require('./config');
+
+const localhost = config.localhost;
+
 describe('sdk test', function () {
   it('default options', function () {
     assert.ok(SDK);
@@ -39,7 +43,7 @@ describe('sdk test', function () {
       currentScene: 'default',
       delay: '2',
     }).then(data => {
-      assert(data[0] === 'http://127.0.0.1:5678/api/data/projectId/dataId');
+      assert(data[0] === `${localhost}/api/data/projectId/dataId`);
       assert.deepStrictEqual(data[1], {
         method: 'POST',
         credentials: 'same-origin',
@@ -72,7 +76,7 @@ describe('sdk test', function () {
       currentScene: 'default',
       delay: null,
     }).then(data => {
-      assert(data[0] === 'http://127.0.0.1:5678/api/data/projectId/dataId');
+      assert(data[0] === `${localhost}/api/data/projectId/dataId`);
       assert.deepStrictEqual(data[1], {
         method: 'POST',
         credentials: 'same-origin',
@@ -157,12 +161,14 @@ describe('sdk test', function () {
     const stub = sinon.stub(client, 'fetch').callsFake(function (...args) {
       stub.restore();
       return Promise.resolve({
-        json: () => { return Promise.resolve(args); },
+        json: () => {
+          return Promise.resolve(args);
+        },
       });
     });
     return client.getDataListByProjectId('projectId')
       .then(data => {
-        assert.equal(data[0], 'http://127.0.0.1:5678/api/data/projectId');
+        assert.equal(data[0], `${localhost}/api/data/projectId`);
         assert.deepStrictEqual(data[1], {
           credentials: 'same-origin',
         });
@@ -189,12 +195,14 @@ describe('sdk test', function () {
     const stub = sinon.stub(client, 'fetch').callsFake(function (...args) {
       stub.restore();
       return Promise.resolve({
-        json: () => { return Promise.resolve(args); },
+        json: () => {
+          return Promise.resolve(args);
+        },
       });
     });
     return client.getDataByProjectIdAndDataId('projectId', 'dataId')
       .then(data => {
-        assert.equal(data[0], 'http://127.0.0.1:5678/api/data/projectId/dataId');
+        assert.equal(data[0], `${localhost}/api/data/projectId/dataId`);
         assert.deepStrictEqual(data[1], {
           credentials: 'same-origin',
         });
@@ -216,4 +224,3 @@ describe('sdk test', function () {
       });
   });
 });
-
