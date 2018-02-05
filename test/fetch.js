@@ -19,7 +19,7 @@ describe('fetch test', function () {
       });
     });
     return client.get('data/baz/fred', {
-      key: 'value'
+      key: 'value',
     }, {
       headers: {
         'proxy-key': 'proxy-value',

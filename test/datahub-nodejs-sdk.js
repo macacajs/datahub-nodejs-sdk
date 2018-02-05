@@ -110,8 +110,8 @@ describe('sdk test', function () {
 
   it('updateSceneByProjectIdAndDataId proxyContent parse failed', function () {
     const client = new SDK();
-    const stub = sinon.stub(client, 'getDataByProjectIdAndDataId').callsFake(function (...args) {
-      stub.restore();
+    const stub1 = sinon.stub(client, 'getDataByProjectIdAndDataId').callsFake(function (...args) {
+      stub1.restore();
       return Promise.resolve({
         success: true,
         data: {
@@ -119,13 +119,26 @@ describe('sdk test', function () {
         },
       });
     });
+    const stub2 = sinon.stub(client, 'fetch').callsFake(function (...args) {
+      stub2.restore();
+      return Promise.resolve({
+        json: () => {
+          return Promise.resolve(args);
+        },
+      });
+    });
     return client.updateSceneByProjectIdAndDataId('projectId', 'dataId', {
       currentScene: 'default',
       delay: null,
     }).then(data => {
-      assert.deepStrictEqual(data, {
-        success: false,
-        data: {},
+      assert(data[0] === `${localhost}/api/data/projectId/dataId`);
+      assert.deepStrictEqual(data[1], {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'currentScene=default&delay=&proxyContent=%7B%7D',
       });
     });
   });
