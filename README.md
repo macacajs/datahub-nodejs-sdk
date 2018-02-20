@@ -25,9 +25,19 @@
 $ npm i datahub-nodejs-sdk --save-dev
 ```
 
-## API Documents
+## Common Usage
 
-[link](//macacajs.github.io/datahub-nodejs-sdk/)
+```javascript
+import DataHubSDK from 'datahub-nodejs-sdk';
+
+const sdkClient = new DataHubSDK();
+
+const res = await sdkClient.getDataListByProjectId(projectId);
+
+console.log(res);
+```
+
+## [API Documents](//macacajs.github.io/datahub-nodejs-sdk/)
 
 ## License
 
