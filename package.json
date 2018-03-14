@@ -1,6 +1,6 @@
 {
   "name": "datahub-nodejs-sdk",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "DataHub Node.js SDK",
   "keywords": [
     "datahub",
@@ -15,7 +15,7 @@
     "url": "git://github.com/macacajs/datahub-nodejs-sdk.git"
   },
   "dependencies": {
-    "node-fetch": "1",
+    "isomorphic-fetch": "2",
     "xutil": "1"
   },
   "devDependencies": {
