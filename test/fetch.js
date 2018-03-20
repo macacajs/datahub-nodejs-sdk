@@ -20,12 +20,13 @@ describe('fetch test', function () {
     });
     return client.get('data/baz/fred', {
       key: 'value',
+      key2: null,
     }, {
       headers: {
         'proxy-key': 'proxy-value',
       },
     }).then(data => {
-      assert(data[0] === `${localhost}/api/data/baz/fred?key=value`);
+      assert(data[0] === `${localhost}/api/data/baz/fred?key=value&key2=`, data[0]);
       assert.deepStrictEqual(data[1], {
         credentials: 'same-origin',
         headers: {

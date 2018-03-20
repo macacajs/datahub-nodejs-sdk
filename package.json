@@ -1,6 +1,6 @@
 {
   "name": "datahub-nodejs-sdk",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "DataHub Node.js SDK",
   "keywords": [
     "datahub",

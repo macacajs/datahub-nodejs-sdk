@@ -23,6 +23,23 @@ describe('sdk test', function () {
     });
   });
 
+  it('assert required params', function () {
+    const client = new SDK();
+    const stub = sinon.stub(client, 'getDataByProjectIdAndDataId').callsFake(function (...args) {
+      stub.restore();
+      return Promise.resolve({
+        success: false,
+        data: {},
+      });
+    });
+    return client.updateSceneByProjectIdAndDataId(undefined, undefined, {})
+      .then(data => {
+        assert.fail();
+      }).catch(e => {
+        assert(e.message === 'projectId is required');
+      });
+  });
+
   it('updateSceneByProjectIdAndDataId', function () {
     const client = new SDK();
     const stub1 = sinon.stub(client, 'getDataByProjectIdAndDataId').callsFake(function (...args) {
@@ -49,9 +66,9 @@ describe('sdk test', function () {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
         },
-        body: 'currentScene=default&delay=2&proxyContent=%7B%7D',
+        body: '{"currentScene":"default","delay":"2","proxyContent":"{}"}',
       });
     });
   });
@@ -82,9 +99,9 @@ describe('sdk test', function () {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
         },
-        body: 'currentScene=default&delay=&proxyContent=%7B%7D',
+        body: '{"currentScene":"default","delay":null,"proxyContent":"{}"}',
       });
     });
   });
@@ -137,9 +154,9 @@ describe('sdk test', function () {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
         },
-        body: 'currentScene=default&delay=&proxyContent=%7B%7D',
+        body: '{"currentScene":"default","delay":null,"proxyContent":"{}"}',
       });
     });
   });
@@ -236,5 +253,58 @@ describe('sdk test', function () {
           data: {},
         });
       });
+  });
+
+  it('updateMultiData success', function () {
+    const client = new SDK();
+    const stub = sinon.stub(client, 'fetch').callsFake(function (...args) {
+      stub.restore();
+      return Promise.resolve({
+        json: () => {
+          return Promise.resolve(args);
+        },
+      });
+    });
+    return client.updateMultiData([{
+      projectId: 'thud',
+      dataId: 'baz',
+      currentScene: 'corge',
+    }, {
+      projectId: 'qux',
+      dataId: 'grault',
+      currentScene: 'quux',
+    }]).then(data => {
+      assert.equal(data[0], `${localhost}/api/multi/data`);
+      assert.deepStrictEqual(data[1], {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: '[{"projectId":"thud","dataId":"baz","currentScene":"corge"},{"projectId":"qux","dataId":"grault","currentScene":"quux"}]',
+      });
+    });
+  });
+
+  it('updateMultiData failed', function () {
+    const client = new SDK();
+    const stub = sinon.stub(client, 'fetch').callsFake(function (...args) {
+      stub.restore();
+      return Promise.reject(new Error('fail'));
+    });
+    return client.updateMultiData([{
+      projectId: 'thud',
+      dataId: 'baz',
+      currentScene: 'corge',
+    }, {
+      projectId: 'qux',
+      dataId: 'grault',
+      currentScene: 'quux',
+    }]).then(data => {
+      assert.deepStrictEqual(data, {
+        success: false,
+        data: {},
+      });
+    });
   });
 });
