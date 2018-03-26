@@ -22,6 +22,7 @@
     "eslint": "4",
     "eslint-config-antife": "^1.0.0",
     "eslint-plugin-mocha": "4",
+    "git-contributor": "^1.0.5",
     "jsdoc": "^3.5.5",
     "minami": "^1.1.1",
     "mocha": "4",
@@ -35,7 +36,8 @@
     "lint": "eslint index.js lib bin test --fix",
     "clean:test": "rm -rf ./coverage",
     "clean:doc": "rm -rf ./docs",
-    "doc": "npm run clean:doc && jsdoc -c ./jsdoc.json"
+    "doc": "npm run clean:doc && jsdoc -c ./jsdoc.json",
+    "contributor": "git-contributor"
   },
   "pre-commit": [
     "lint"
