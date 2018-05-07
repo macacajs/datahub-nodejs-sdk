@@ -307,4 +307,51 @@ describe('sdk test', function () {
       });
     });
   });
+
+  it('getSceneDataByProjectIdAndDataId success', function () {
+    const client = new SDK();
+    const stub = sinon.stub(client, 'fetch').callsFake(function (...args) {
+      stub.restore();
+      return Promise.resolve({
+        json: () => {
+          return Promise.resolve({
+            success: true,
+            data: {
+              scenes: '[{"name":"default","data":{"message":"scene"}}]',
+            },
+          });
+        },
+      });
+    });
+    return client.getSceneDataByProjectIdAndDataId('projectId', 'dataId', 'default')
+      .then(data => {
+        assert.deepStrictEqual(data, {
+          name: 'default',
+          data: {
+            message: 'scene',
+          },
+        });
+      });
+  });
+
+  it('getSceneDataByProjectIdAndDataId failed', function () {
+    const client = new SDK();
+    const stub = sinon.stub(client, 'fetch').callsFake(function (...args) {
+      stub.restore();
+      return Promise.resolve({
+        json: () => {
+          return Promise.resolve({
+            success: true,
+            data: {
+              scenes: 'invalid json',
+            },
+          });
+        },
+      });
+    });
+    return client.getSceneDataByProjectIdAndDataId('projectId', 'dataId', 'default')
+      .then(data => {
+        assert.deepStrictEqual(data, {});
+      });
+  });
 });
