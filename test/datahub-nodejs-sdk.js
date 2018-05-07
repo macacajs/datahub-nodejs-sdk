@@ -326,10 +326,7 @@ describe('sdk test', function () {
     return client.getSceneDataByProjectIdAndDataId('projectId', 'dataId', 'default')
       .then(data => {
         assert.deepStrictEqual(data, {
-          name: 'default',
-          data: {
-            message: 'scene',
-          },
+          message: 'scene',
         });
       });
   });
