@@ -20,6 +20,8 @@ describe('sdk test', function () {
       port: 5678,
       hostname: '127.0.0.1',
       protocol: 'http',
+      retryMaxCount: 5,
+      retryInterval: 3000,
     });
   });
 
@@ -162,7 +164,9 @@ describe('sdk test', function () {
   });
 
   it('updateSceneByProjectIdAndDataId update failed', function () {
-    const client = new SDK();
+    const client = new SDK({
+      retryMaxCount: 0,
+    });
     const stub1 = sinon.stub(client, 'getDataByProjectIdAndDataId').callsFake(function (...args) {
       stub1.restore();
       return Promise.resolve({
@@ -207,7 +211,9 @@ describe('sdk test', function () {
   });
 
   it('getDataListByProjectId failed', function () {
-    const client = new SDK();
+    const client = new SDK({
+      retryMaxCount: 0,
+    });
     const stub = sinon.stub(client, 'fetch').callsFake(function (...args) {
       stub.restore();
       return Promise.reject(new Error('fail'));
@@ -241,7 +247,9 @@ describe('sdk test', function () {
   });
 
   it('getDataByProjectIdAndDataId failed', function () {
-    const client = new SDK();
+    const client = new SDK({
+      retryMaxCount: 0,
+    });
     const stub = sinon.stub(client, 'fetch').callsFake(function (...args) {
       stub.restore();
       return Promise.reject(new Error('fail'));
@@ -287,7 +295,9 @@ describe('sdk test', function () {
   });
 
   it('updateMultiData failed', function () {
-    const client = new SDK();
+    const client = new SDK({
+      retryMaxCount: 0,
+    });
     const stub = sinon.stub(client, 'fetch').callsFake(function (...args) {
       stub.restore();
       return Promise.reject(new Error('fail'));
@@ -332,7 +342,9 @@ describe('sdk test', function () {
   });
 
   it('getSceneDataByProjectIdAndDataId failed', function () {
-    const client = new SDK();
+    const client = new SDK({
+      retryMaxCount: 0,
+    });
     const stub = sinon.stub(client, 'fetch').callsFake(function (...args) {
       stub.restore();
       return Promise.resolve({
