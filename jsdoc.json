@@ -1,4 +1,8 @@
 {
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc"]
+  },
   "source": {
     "include": [
       "lib",
@@ -10,8 +14,13 @@
     "destination": "./docs/",
     "template": "node_modules/minami"
   },
+  "plugins": [
+    "plugins/markdown"
+  ],
   "templates": {
     "cleverLinks": false,
-    "monospaceLinks": false
+    "monospaceLinks": true,
+    "useLongnameInNav": false,
+    "showInheritedInNav": true
   }
 }

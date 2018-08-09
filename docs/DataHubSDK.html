@@ -24,7 +24,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="DataHubSDK.html">DataHubSDK</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="DataHubSDK.html#getDataByProjectIdAndDataId">getDataByProjectIdAndDataId</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="DataHubSDK.html#getDataListByProjectId">getDataListByProjectId</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="DataHubSDK.html#updateSceneByProjectIdAndDataId">updateSceneByProjectIdAndDataId</a></span></li>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="DataHubSDK.html">DataHubSDK</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="DataHubSDK.html#switchAllScenes">switchAllScenes</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="DataHubSDK.html#switchMultiScenes">switchMultiScenes</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="DataHubSDK.html#switchScene">switchScene</a></span></li>
 </nav>
 
 <div id="main">
@@ -45,655 +45,7 @@
         DataHubSDK
         </h2>
         
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="DataHubSDK"><span class="type-signature"></span>new DataHubSDK<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    DataHub Node.js SDK.
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line14">line 14</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="getDataByProjectIdAndDataId"><span class="type-signature">(async) </span>getDataByProjectIdAndDataId<span class="signature">(projectId, dataId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-
-    
-
-
-
-<div class="description">
-    get data list by projectId and dataId.
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line106">line 106</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>projectId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>string</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>dataId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>string</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                
-                
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
-
-<dl class="param-type">
-    <dt>
-        Type:
-    </dt>
-    <dd>
-        
-<span class="param-type"><code>Promise</code></span>
-
-
-    </dd>
-</dl>
-
-
-    
-</div>
-
-
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="getDataListByProjectId"><span class="type-signature">(async) </span>getDataListByProjectId<span class="signature">(projectId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-
-    
-
-
-
-<div class="description">
-    get data list by projectId.
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line118">line 118</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>projectId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>string</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                
-                
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
-
-<dl class="param-type">
-    <dt>
-        Type:
-    </dt>
-    <dd>
-        
-<span class="param-type"><code>Promise</code></span>
-
-
-    </dd>
-</dl>
-
-
-    
-</div>
-
-
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="updateSceneByProjectIdAndDataId"><span class="type-signature">(async) </span>updateSceneByProjectIdAndDataId<span class="signature">(projectId, dataId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-
-    
-
-
-
-<div class="description">
-    update scene by projectId and dataId.
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line74">line 74</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>projectId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>string</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>dataId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>string</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                
-                
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
-
-<dl class="param-type">
-    <dt>
-        Type:
-    </dt>
-    <dd>
-        
-<span class="param-type"><code>Promise</code></span>
-
-
-    </dd>
-</dl>
-
-
-    
-</div>
-
-
-
-</div>
-        
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>
-        DataHubSDK
-        </h2>
+            <div class="class-description"><p>DataHub Node.js SDK.</p></div>
         
     
 </header>
@@ -705,15 +57,20 @@
 <div class="section-method">
 
     
+    <h2>Constructor</h2>
+    
 
-    <h4 class="name" id="DataHubSDK"><span class="type-signature"></span>new DataHubSDK<span class="signature">(port, hostname, protocol)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="DataHubSDK"><span class="type-signature"></span>new DataHubSDK<span class="signature">(port<span class="signature-attributes">opt</span>, hostname<span class="signature-attributes">opt</span>, protocol<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Create a SDK client.
+    <pre class="prettyprint source lang-javascript"><code>const client = new SDK({
+  port: 5678,
+  hostname: '127.0.0.1',
+});</code></pre>
 </div>
 
 
@@ -749,7 +106,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line27">line 27</a>
+        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line24">line 24</a>
     </li></ul></dd>
     
 
@@ -781,7 +138,11 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -806,11 +167,27 @@
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    5678
+                
+                </td>
             
 
             <td class="description last">
-                port.
+                <p>DataHub port.</p>
                 
             </td>
         </tr>
@@ -832,11 +209,27 @@
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    '127.0.0.1'
+                
+                </td>
             
 
             <td class="description last">
-                hostname.
+                <p>DataHub hostname.</p>
                 
             </td>
         </tr>
@@ -858,11 +251,27 @@
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    'http'
+                
+                </td>
             
 
             <td class="description last">
-                protocol.
+                <p>DataHub protocol.</p>
                 
             </td>
         </tr>
@@ -911,14 +320,17 @@
 
     
 
-    <h4 class="name" id="getDataByProjectIdAndDataId"><span class="type-signature">(async) </span>getDataByProjectIdAndDataId<span class="signature">(projectId, dataId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="switchAllScenes"><span class="type-signature">(async) </span>switchAllScenes<span class="signature">(options)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    get data list by projectId and dataId.
+    <pre class="prettyprint source lang-javascript"><code>await client.switchAllScenes({
+  hub: 'app',
+  scene: 'success',
+})</code></pre>
 </div>
 
 
@@ -954,7 +366,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line106">line 106</a>
+        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line150">line 150</a>
     </li></ul></dd>
     
 
@@ -998,7 +410,50 @@
 
         <tr>
             
-                <td class="name"><code>projectId</code></td>
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>Object</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <p>switch scene options</p>
+                
+                    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>hub</code></td>
             
 
             <td class="type">
@@ -1015,7 +470,7 @@
             
 
             <td class="description last">
-                
+                <p>hubname.</p>
                 
             </td>
         </tr>
@@ -1024,7 +479,7 @@
 
         <tr>
             
-                <td class="name"><code>dataId</code></td>
+                <td class="name"><code>scene</code></td>
             
 
             <td class="type">
@@ -1041,7 +496,15 @@
             
 
             <td class="description last">
+                <p>scene name.</p>
                 
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
                 
             </td>
         </tr>
@@ -1062,27 +525,6 @@
 
 
 
-
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
-
-<dl class="param-type">
-    <dt>
-        Type:
-    </dt>
-    <dd>
-        
-<span class="param-type"><code>Promise</code></span>
-
-
-    </dd>
-</dl>
-
-
-    
-</div>
 
 
 
@@ -1093,14 +535,22 @@
 
     
 
-    <h4 class="name" id="getDataListByProjectId"><span class="type-signature">(async) </span>getDataListByProjectId<span class="signature">(projectId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="switchMultiScenes"><span class="type-signature">(async) </span>switchMultiScenes<span class="signature">(options)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    get data list by projectId.
+    <pre class="prettyprint source lang-javascript"><code>await client.switchMultiScenes([{
+  hub: 'app',
+  pathname: 'api',
+  scene: 'success',
+}, {
+  hub: 'app',
+  pathname: 'api2',
+  scene: 'success',
+}])</code></pre>
 </div>
 
 
@@ -1136,7 +586,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line118">line 118</a>
+        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line132">line 132</a>
     </li></ul></dd>
     
 
@@ -1180,7 +630,50 @@
 
         <tr>
             
-                <td class="name"><code>projectId</code></td>
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>Array.&lt;Object></code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <p>switch scene options</p>
+                
+                    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>hub</code></td>
             
 
             <td class="type">
@@ -1197,7 +690,67 @@
             
 
             <td class="description last">
+                <p>hubname.</p>
                 
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>pathname</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>string</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <p>pathname.</p>
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scene</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>string</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <p>scene name.</p>
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
                 
             </td>
         </tr>
@@ -1218,27 +771,6 @@
 
 
 
-
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
-
-<dl class="param-type">
-    <dt>
-        Type:
-    </dt>
-    <dd>
-        
-<span class="param-type"><code>Promise</code></span>
-
-
-    </dd>
-</dl>
-
-
-    
-</div>
 
 
 
@@ -1249,14 +781,18 @@
 
     
 
-    <h4 class="name" id="updateSceneByProjectIdAndDataId"><span class="type-signature">(async) </span>updateSceneByProjectIdAndDataId<span class="signature">(projectId, dataId)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="switchScene"><span class="type-signature">(async) </span>switchScene<span class="signature">(options)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    update scene by projectId and dataId.
+    <pre class="prettyprint source lang-javascript"><code>await client.switchScene({
+  hub: 'app',
+  pathname: 'api',
+  scene: 'success',
+})</code></pre>
 </div>
 
 
@@ -1292,7 +828,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line74">line 74</a>
+        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line108">line 108</a>
     </li></ul></dd>
     
 
@@ -1336,7 +872,50 @@
 
         <tr>
             
-                <td class="name"><code>projectId</code></td>
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>Object</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <p>switch scene options</p>
+                
+                    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>hub</code></td>
             
 
             <td class="type">
@@ -1353,7 +932,7 @@
             
 
             <td class="description last">
-                
+                <p>hubname.</p>
                 
             </td>
         </tr>
@@ -1362,7 +941,7 @@
 
         <tr>
             
-                <td class="name"><code>dataId</code></td>
+                <td class="name"><code>pathname</code></td>
             
 
             <td class="type">
@@ -1379,7 +958,41 @@
             
 
             <td class="description last">
+                <p>pathname.</p>
                 
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scene</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>string</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <p>scene name.</p>
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
                 
             </td>
         </tr>
@@ -1400,27 +1013,6 @@
 
 
 
-
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
-
-<dl class="param-type">
-    <dt>
-        Type:
-    </dt>
-    <dd>
-        
-<span class="param-type"><code>Promise</code></span>
-
-
-    </dd>
-</dl>
-
-
-    
-</div>
 
 
 
@@ -1443,7 +1035,7 @@
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Feb 20 2018 20:02:19 GMT+0800 (CST) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Aug 09 2018 17:19:49 GMT+0800 (CST) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

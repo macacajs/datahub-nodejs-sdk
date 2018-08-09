@@ -24,7 +24,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="DataHubSDK.html">DataHubSDK</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="DataHubSDK.html#getDataByProjectIdAndDataId">getDataByProjectIdAndDataId</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="DataHubSDK.html#getDataListByProjectId">getDataListByProjectId</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="DataHubSDK.html#updateSceneByProjectIdAndDataId">updateSceneByProjectIdAndDataId</a></span></li>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="DataHubSDK.html">DataHubSDK</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="DataHubSDK.html#switchAllScenes">switchAllScenes</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="DataHubSDK.html#switchMultiScenes">switchMultiScenes</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="DataHubSDK.html#switchScene">switchScene</a></span></li>
 </nav>
 
 <div id="main">
@@ -41,29 +41,33 @@
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
 
-const assert = require('assert');
-const fetch = require('node-fetch');
-
-const _ = require('./helper');
+const fetch = require('isomorphic-fetch');
 
 const defaultOptions = {
   port: 5678,
   hostname: '127.0.0.1',
   protocol: 'http',
+  retryMaxCount: 5,
+  retryInterval: 3000,
 };
 
 /**
  * DataHub Node.js SDK.
- * @module DataHubSDK
- * @class
+ *
+ * @description
+ * ```javascript
+ * const client = new SDK({
+ *   port: 5678,
+ *   hostname: '127.0.0.1',
+ * });
+ * ```
  */
 class DataHubSDK {
-
   /**
    * Create a SDK client.
-   * @param {string} port - port.
-   * @param {string} hostname - hostname.
-   * @param {string} protocol - protocol.
+   * @param {string} [port=5678] - DataHub port.
+   * @param {string} [hostname='127.0.0.1'] - DataHub hostname.
+   * @param {string} [protocol='http'] - DataHub protocol.
    */
   constructor (options = {}) {
     this.options = Object.assign(defaultOptions, options);
@@ -78,10 +82,32 @@ class DataHubSDK {
     };
   }
 
+  sleep (ms) {
+    return new Promise(resolve => {
+      setTimeout(function () {
+        resolve();
+      }, ms);
+    });
+  }
+
+  async fetchWithRetry (retryTimes, ...args) {
+    try {
+      return await this.fetch(...args);
+    } catch (e) {
+      if (retryTimes) {
+        console.log(`fetch ${args[0]} fail because of '${e.message}', will retry after ${this.options.retryInterval}ms, retry count: ${retryTimes}`);
+        await this.sleep(this.options.retryInterval);
+        retryTimes--;
+        return await this.fetchWithRetry(retryTimes, ...args);
+      }
+      throw e;
+    }
+  }
+
+  /* istanbul ignore next */
   get (apiPath, data, options) {
-    const params = _.serialize(data);
     const url = `${this.rootUrl}${apiPath}`;
-    return this.fetch(params ? `${url}?${params}` : url, Object.assign({
+    return this.fetchWithRetry(this.options.retryMaxCount, url, Object.assign({
       credentials: 'same-origin',
     }, options)).then(res => res.json())
       .catch((e) => {
@@ -90,15 +116,14 @@ class DataHubSDK {
   }
 
   post (apiPath, data, options) {
-    const params = _.serialize(data);
     const url = `${this.rootUrl}${apiPath}`;
-    return this.fetch(url, Object.assign({
+    return this.fetchWithRetry(this.options.retryMaxCount, url, Object.assign({
       method: 'POST',
       credentials: 'same-origin',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
       },
-      body: params,
+      body: JSON.stringify(data),
     }, options)).then(res => res.json())
       .catch(() => {
         return this.EXCEPTION_RESPONSE;
@@ -106,59 +131,65 @@ class DataHubSDK {
   }
 
   /**
-   * update scene by projectId and dataId.
-   * @async
-   * @param {string} projectId
-   * @param {string} dataId
-   * @returns {Promise}
+   * switch one scene
+   * @param {Object} options - switch scene options
+   * @param {string} options.hub - hubname.
+   * @param {string} options.pathname - pathname.
+   * @param {string} options.scene - scene name.
+   *
+   * @description
+   * ```javascript
+   * await client.switchScene({
+   *   hub: 'app',
+   *   pathname: 'api',
+   *   scene: 'success',
+   * })
+   * ```
    */
-  async updateSceneByProjectIdAndDataId (projectId, dataId, {
-    currentScene,
-    delay,
-    statusCode,
-    responseHeaders,
-  }) {
-    assert(projectId, 'projectId is required');
-    assert(dataId, 'dataId is required');
-    const res = await this.getDataByProjectIdAndDataId(projectId, dataId);
-    if (!res.success) {
-      return this.EXCEPTION_RESPONSE;
-    }
-    let proxyContent = {};
-    try {
-      proxyContent = JSON.parse(res.data.proxyContent);
-    } catch (_) { /* ignore invalid proxyContent */ }
-    proxyContent.statusCode = statusCode;
-    proxyContent.responseHeaders = responseHeaders;
-    return this.post(`data/${projectId}/${dataId}`, {
-      currentScene,
-      delay,
-      proxyContent: JSON.stringify(proxyContent),
-    });
+  async switchScene (options) {
+    return await this.post('sdk/switch_scene', options);
   }
 
   /**
-   * get data list by projectId and dataId.
-   * @async
-   * @param {string} projectId
-   * @param {string} dataId
-   * @returns {Promise}
+   * switch multi scenes
+   * @param {Object[]} options - switch scene options
+   * @param {string} options[].hub - hubname.
+   * @param {string} options[].pathname - pathname.
+   * @param {string} options[].scene - scene name.
+   *
+   * @description
+   * ```javascript
+   * await client.switchMultiScenes([{
+   *   hub: 'app',
+   *   pathname: 'api',
+   *   scene: 'success',
+   * }, {
+   *   hub: 'app',
+   *   pathname: 'api2',
+   *   scene: 'success',
+   * }])
+   * ```
    */
-  async getDataByProjectIdAndDataId (projectId, dataId) {
-    assert(projectId, 'projectId is required');
-    assert(dataId, 'dataId is required');
-    return this.get(`data/${projectId}/${dataId}`);
+  async switchMultiScenes (options) {
+    return await this.post('sdk/switch_multi_scenes', options);
   }
 
   /**
-   * get data list by projectId.
-   * @async
-   * @param {string} projectId
-   * @returns {Promise}
+   * switch all scenes
+   * @param {Object} options - switch scene options
+   * @param {string} options.hub - hubname.
+   * @param {string} options.scene - scene name.
+   *
+   * @description
+   * ```javascript
+   * await client.switchAllScenes({
+   *   hub: 'app',
+   *   scene: 'success',
+   * })
+   * ```
    */
-  async getDataListByProjectId (projectId) {
-    assert(projectId, 'projectId is required');
-    return this.get(`data/${projectId}`);
+  async switchAllScenes (options) {
+    return await this.post('sdk/switch_all_scenes', options);
   }
 }
 
@@ -175,7 +206,7 @@ module.exports = DataHubSDK;
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Feb 20 2018 20:02:19 GMT+0800 (CST) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Aug 09 2018 17:19:49 GMT+0800 (CST) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
