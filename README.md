@@ -32,9 +32,33 @@ import DataHubSDK from 'datahub-nodejs-sdk';
 
 const sdkClient = new DataHubSDK();
 
-const res = await sdkClient.getDataListByProjectId(projectId);
+// switch currentScene for 'POST api/create' to 'sucess'
+await sdkClient.switchScene({
+  hub: 'app',
+  pathname: 'api/create',
+  scene: 'success',
+  method: 'POST',   // method is optional, default method is 'ALL'
+})
 
-console.log(res);
+// switch currentScene for 'GET api/read' to 'success'
+// switch currentScene for 'DELETE api/delete' to 'success'
+await sdkClient.switchMultiScenes([{
+  hub: 'app',
+  pathname: 'api/read',
+  scene: 'success',
+  method: 'GET',   // method is optional, default method is 'ALL'
+}, {
+  hub: 'app',
+  pathname: 'api/delete',
+  scene: 'success',
+  method: 'DELETE',  // method is optional, default method is 'ALL'
+}])
+
+// switch all scenes for all pathnames under app to 'success'
+await sdkClient.switchAllScenes({
+  hub: 'app',
+  scene: 'success',
+})
 ```
 
 ## [API Documents](//macacajs.github.io/datahub-nodejs-sdk/)
