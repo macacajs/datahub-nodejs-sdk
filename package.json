@@ -31,7 +31,7 @@
   },
   "scripts": {
     "ci": "npm run lint && npm run test",
-    "test": "npm run clean:test && nyc --reporter=text-summary --reporter=html `npm bin`/_mocha",
+    "test": "npm run lint && nyc --reporter=lcov --reporter=text mocha",
     "lint": "eslint index.js lib bin test --fix",
     "clean:test": "rm -rf ./coverage",
     "clean:doc": "rm -rf ./docs",
