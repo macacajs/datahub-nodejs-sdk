@@ -15,13 +15,16 @@ describe('fetch test', function () {
       stub.restore();
       return Promise.reject(new Error('fail'));
     });
-    return client.getDataByProjectIdAndDataId('projectId', 'dataId')
-      .then(data => {
-        assert.deepStrictEqual(data, {
-          success: false,
-          data: {},
-        });
+    return client.switchScene({
+      hub: 'app',
+      pathname: 'api',
+      scene: 'success',
+    }).then(data => {
+      assert.deepStrictEqual(data, {
+        success: false,
+        data: {},
       });
+    });
   });
 });
 

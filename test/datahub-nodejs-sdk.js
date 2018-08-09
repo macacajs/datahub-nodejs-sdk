@@ -25,342 +25,93 @@ describe('sdk test', function () {
     });
   });
 
-  it('assert required params', function () {
+  it('switchScene', function () {
     const client = new SDK();
-    const stub = sinon.stub(client, 'getDataByProjectIdAndDataId').callsFake(function (...args) {
+    const stub = sinon.stub(client, 'fetch').callsFake(function (...args) {
       stub.restore();
-      return Promise.resolve({
-        success: false,
-        data: {},
-      });
-    });
-    return client.updateSceneByProjectIdAndDataId(undefined, undefined, {})
-      .then(data => {
-        assert.fail();
-      }).catch(e => {
-        assert(e.message === 'projectId is required');
-      });
-  });
-
-  it('updateSceneByProjectIdAndDataId', function () {
-    const client = new SDK();
-    const stub1 = sinon.stub(client, 'getDataByProjectIdAndDataId').callsFake(function (...args) {
-      stub1.restore();
-      return Promise.resolve({
-        success: true,
-        data: {
-          proxyContent: '{}',
-        },
-      });
-    });
-    const stub2 = sinon.stub(client, 'fetch').callsFake(function (...args) {
-      stub2.restore();
       return Promise.resolve({
         json: () => Promise.resolve(args),
       });
     });
-    return client.updateSceneByProjectIdAndDataId('projectId', 'dataId', {
-      currentScene: 'default',
-      delay: '2',
+    return client.switchScene({
+      hub: 'app',
+      pathname: 'api',
+      scene: 'success',
     }).then(data => {
-      assert(data[0] === `${localhost}/api/data/projectId/dataId`);
-      assert.deepStrictEqual(data[1], {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
+      assert.deepStrictEqual(data, [
+        `${localhost}/api/sdk/switch_scene`,
+        { method: 'POST',
+          credentials: 'same-origin',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            hub: 'app',
+            pathname: 'api',
+            scene: 'success',
+          }),
         },
-        body: '{"currentScene":"default","delay":"2","proxyContent":"{}"}',
-      });
+      ]);
     });
   });
 
-  it('updateSceneByProjectIdAndDataId with null', function () {
+  it('switchMultiScenes', function () {
     const client = new SDK();
-    const stub1 = sinon.stub(client, 'getDataByProjectIdAndDataId').callsFake(function (...args) {
-      stub1.restore();
-      return Promise.resolve({
-        success: true,
-        data: {
-          proxyContent: '{}',
-        },
-      });
-    });
-    const stub2 = sinon.stub(client, 'fetch').callsFake(function (...args) {
-      stub2.restore();
+    const stub = sinon.stub(client, 'fetch').callsFake(function (...args) {
+      stub.restore();
       return Promise.resolve({
         json: () => Promise.resolve(args),
       });
     });
-    return client.updateSceneByProjectIdAndDataId('projectId', 'dataId', {
-      currentScene: 'default',
-      delay: null,
-    }).then(data => {
-      assert(data[0] === `${localhost}/api/data/projectId/dataId`);
-      assert.deepStrictEqual(data[1], {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: '{"currentScene":"default","delay":null,"proxyContent":"{}"}',
-      });
-    });
-  });
-
-  it('updateSceneByProjectIdAndDataId getData failed', function () {
-    const client = new SDK();
-    const stub = sinon.stub(client, 'getDataByProjectIdAndDataId').callsFake(function (...args) {
-      stub.restore();
-      return Promise.resolve({
-        success: false,
-        data: {},
-      });
-    });
-    return client.updateSceneByProjectIdAndDataId('projectId', 'dataId', {
-      currentScene: 'default',
-      delay: null,
-    }).then(data => {
-      assert.deepStrictEqual(data, {
-        success: false,
-        data: {},
-      });
-    });
-  });
-
-  it('updateSceneByProjectIdAndDataId proxyContent parse failed', function () {
-    const client = new SDK();
-    const stub1 = sinon.stub(client, 'getDataByProjectIdAndDataId').callsFake(function (...args) {
-      stub1.restore();
-      return Promise.resolve({
-        success: true,
-        data: {
-          proxyContent: 'invalid json string',
-        },
-      });
-    });
-    const stub2 = sinon.stub(client, 'fetch').callsFake(function (...args) {
-      stub2.restore();
-      return Promise.resolve({
-        json: () => {
-          return Promise.resolve(args);
-        },
-      });
-    });
-    return client.updateSceneByProjectIdAndDataId('projectId', 'dataId', {
-      currentScene: 'default',
-      delay: null,
-    }).then(data => {
-      assert(data[0] === `${localhost}/api/data/projectId/dataId`);
-      assert.deepStrictEqual(data[1], {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: '{"currentScene":"default","delay":null,"proxyContent":"{}"}',
-      });
-    });
-  });
-
-  it('updateSceneByProjectIdAndDataId update failed', function () {
-    const client = new SDK({
-      retryMaxCount: 0,
-    });
-    const stub1 = sinon.stub(client, 'getDataByProjectIdAndDataId').callsFake(function (...args) {
-      stub1.restore();
-      return Promise.resolve({
-        success: true,
-        data: {
-          proxyContent: '{}',
-        },
-      });
-    });
-    const stub2 = sinon.stub(client, 'fetch').callsFake(function (...args) {
-      stub2.restore();
-      return Promise.reject(new Error('fail'));
-    });
-    return client.updateSceneByProjectIdAndDataId('projectId', 'dataId', {
-      currentScene: 'default',
-      delay: null,
-    }).then(data => {
-      assert.deepStrictEqual(data, {
-        success: false,
-        data: {},
-      });
-    });
-  });
-
-  it('getDataListByProjectId success', function () {
-    const client = new SDK();
-    const stub = sinon.stub(client, 'fetch').callsFake(function (...args) {
-      stub.restore();
-      return Promise.resolve({
-        json: () => {
-          return Promise.resolve(args);
-        },
-      });
-    });
-    return client.getDataListByProjectId('projectId')
-      .then(data => {
-        assert.equal(data[0], `${localhost}/api/data/projectId`);
-        assert.deepStrictEqual(data[1], {
-          credentials: 'same-origin',
-        });
-      });
-  });
-
-  it('getDataListByProjectId failed', function () {
-    const client = new SDK({
-      retryMaxCount: 0,
-    });
-    const stub = sinon.stub(client, 'fetch').callsFake(function (...args) {
-      stub.restore();
-      return Promise.reject(new Error('fail'));
-    });
-    return client.getDataListByProjectId('projectId')
-      .then(data => {
-        assert.deepStrictEqual(data, {
-          success: false,
-          data: {},
-        });
-      });
-  });
-
-  it('getDataByProjectIdAndDataId success', function () {
-    const client = new SDK();
-    const stub = sinon.stub(client, 'fetch').callsFake(function (...args) {
-      stub.restore();
-      return Promise.resolve({
-        json: () => {
-          return Promise.resolve(args);
-        },
-      });
-    });
-    return client.getDataByProjectIdAndDataId('projectId', 'dataId')
-      .then(data => {
-        assert.equal(data[0], `${localhost}/api/data/projectId/dataId`);
-        assert.deepStrictEqual(data[1], {
-          credentials: 'same-origin',
-        });
-      });
-  });
-
-  it('getDataByProjectIdAndDataId failed', function () {
-    const client = new SDK({
-      retryMaxCount: 0,
-    });
-    const stub = sinon.stub(client, 'fetch').callsFake(function (...args) {
-      stub.restore();
-      return Promise.reject(new Error('fail'));
-    });
-    return client.getDataByProjectIdAndDataId('projectId', 'dataId')
-      .then(data => {
-        assert.deepStrictEqual(data, {
-          success: false,
-          data: {},
-        });
-      });
-  });
-
-  it('updateMultiData success', function () {
-    const client = new SDK();
-    const stub = sinon.stub(client, 'fetch').callsFake(function (...args) {
-      stub.restore();
-      return Promise.resolve({
-        json: () => {
-          return Promise.resolve(args);
-        },
-      });
-    });
-    return client.updateMultiData([{
-      projectId: 'thud',
-      dataId: 'baz',
-      currentScene: 'corge',
+    return client.switchMultiScenes([{
+      hub: 'app',
+      pathname: 'api',
+      scene: 'success',
     }, {
-      projectId: 'qux',
-      dataId: 'grault',
-      currentScene: 'quux',
+      hub: 'app2',
+      pathname: 'api2',
+      scene: 'success',
     }]).then(data => {
-      assert.equal(data[0], `${localhost}/api/multi/data`);
-      assert.deepStrictEqual(data[1], {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
+      assert.deepStrictEqual(data, [
+        `${localhost}/api/sdk/switch_multi_scenes`,
+        { method: 'POST',
+          credentials: 'same-origin',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify([{
+            hub: 'app',
+            pathname: 'api',
+            scene: 'success',
+          }, {
+            hub: 'app2',
+            pathname: 'api2',
+            scene: 'success',
+          }]),
         },
-        body: '[{"projectId":"thud","dataId":"baz","currentScene":"corge"},{"projectId":"qux","dataId":"grault","currentScene":"quux"}]',
-      });
+      ]);
     });
   });
 
-  it('updateMultiData failed', function () {
-    const client = new SDK({
-      retryMaxCount: 0,
-    });
-    const stub = sinon.stub(client, 'fetch').callsFake(function (...args) {
-      stub.restore();
-      return Promise.reject(new Error('fail'));
-    });
-    return client.updateMultiData([{
-      projectId: 'thud',
-      dataId: 'baz',
-      currentScene: 'corge',
-    }, {
-      projectId: 'qux',
-      dataId: 'grault',
-      currentScene: 'quux',
-    }]).then(data => {
-      assert.deepStrictEqual(data, {
-        success: false,
-        data: {},
-      });
-    });
-  });
-
-  it('getSceneDataByProjectIdAndDataId success', function () {
+  it('switchAllScenes', function () {
     const client = new SDK();
     const stub = sinon.stub(client, 'fetch').callsFake(function (...args) {
       stub.restore();
       return Promise.resolve({
-        json: () => {
-          return Promise.resolve({
-            success: true,
-            data: {
-              scenes: '[{"name":"default","data":{"message":"scene"}}]',
-            },
-          });
+        json: () => Promise.resolve(args),
+      });
+    });
+    return client.switchAllScenes({
+      hub: 'app',
+      scene: 'success',
+    }).then(data => {
+      assert.deepStrictEqual(data, [
+        `${localhost}/api/sdk/switch_all_scenes`,
+        { method: 'POST',
+          credentials: 'same-origin',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            hub: 'app',
+            scene: 'success',
+          }),
         },
-      });
+      ]);
     });
-    return client.getSceneDataByProjectIdAndDataId('projectId', 'dataId', 'default')
-      .then(data => {
-        assert.deepStrictEqual(data, {
-          message: 'scene',
-        });
-      });
-  });
-
-  it('getSceneDataByProjectIdAndDataId failed', function () {
-    const client = new SDK({
-      retryMaxCount: 0,
-    });
-    const stub = sinon.stub(client, 'fetch').callsFake(function (...args) {
-      stub.restore();
-      return Promise.resolve({
-        json: () => {
-          return Promise.resolve({
-            success: true,
-            data: {
-              scenes: 'invalid json',
-            },
-          });
-        },
-      });
-    });
-    return client.getSceneDataByProjectIdAndDataId('projectId', 'dataId', 'default')
-      .then(data => {
-        assert.deepStrictEqual(data, {});
-      });
   });
 });
