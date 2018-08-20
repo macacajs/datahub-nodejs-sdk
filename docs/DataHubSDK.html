@@ -366,7 +366,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line150">line 150</a>
+        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line174">line 174</a>
     </li></ul></dd>
     
 
@@ -550,6 +550,11 @@
   hub: 'app',
   pathname: 'api2',
   scene: 'success',
+  status: 304,
+  delay: 0.1,
+  headers: {
+    'x-key': 'value',
+  },
 }])</code></pre>
 </div>
 
@@ -586,7 +591,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line132">line 132</a>
+        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line156">line 156</a>
     </li></ul></dd>
     
 
@@ -661,6 +666,8 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -685,6 +692,14 @@
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -712,6 +727,14 @@
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -738,11 +761,127 @@
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last">
                 <p>scene name.</p>
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>status</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>number</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                <p>rewrite response status, 200-50x.</p>
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>delay</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>number</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                <p>add response delay time in seconds.</p>
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>headers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>Object</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                <p>rewrite response headers in key-value pairs.</p>
                 
             </td>
         </tr>
@@ -792,6 +931,15 @@
   hub: 'app',
   pathname: 'api',
   scene: 'success',
+})</code></pre><pre class="prettyprint source lang-javascript"><code>await client.switchScene({
+  hub: 'app',
+  pathname: 'api',
+  scene: 'success',
+  status: 304,
+  delay: 2.5,
+  headers: {
+    'x-server-key': 'value',
+  },
 })</code></pre>
 </div>
 
@@ -828,7 +976,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line108">line 108</a>
+        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line124">line 124</a>
     </li></ul></dd>
     
 
@@ -903,6 +1051,8 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -927,6 +1077,14 @@
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -954,6 +1112,14 @@
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -980,11 +1146,127 @@
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last">
                 <p>scene name.</p>
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>status</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>number</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                <p>rewrite response status 200-50x.</p>
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>delay</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>number</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                <p>add response delay time in seconds.</p>
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>headers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>Object</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                <p>rewrite response headers in key-value pairs.</p>
                 
             </td>
         </tr>
@@ -1035,7 +1317,7 @@
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Aug 17 2018 22:58:29 GMT+0800 (CST) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Aug 20 2018 15:06:00 GMT+0800 (CST) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
