@@ -366,7 +366,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line174">line 174</a>
+        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line180">line 180</a>
     </li></ul></dd>
     
 
@@ -546,10 +546,12 @@
   hub: 'app',
   pathname: 'api',
   scene: 'success',
+  method: 'POST',
 }, {
   hub: 'app',
   pathname: 'api2',
   scene: 'success',
+  method: 'POST',
   status: 304,
   delay: 0.1,
   headers: {
@@ -591,7 +593,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line156">line 156</a>
+        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line162">line 162</a>
     </li></ul></dd>
     
 
@@ -670,6 +672,8 @@
         
 
         
+        <th>Default</th>
+        
 
         <th class="last">Description</th>
     </tr>
@@ -702,6 +706,10 @@
                 </td>
             
 
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last">
@@ -737,6 +745,10 @@
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last">
                 <p>pathname.</p>
@@ -770,6 +782,10 @@
                 </td>
             
 
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last">
@@ -807,6 +823,10 @@
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last">
                 <p>rewrite response status, 200-50x.</p>
@@ -843,9 +863,55 @@
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last">
                 <p>add response delay time in seconds.</p>
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>method</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>string</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    'ALL'
+                
+                </td>
+            
+
+            <td class="description last">
+                <p>api method, default is 'ALL'.</p>
                 
             </td>
         </tr>
@@ -878,6 +944,10 @@
                 </td>
             
 
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last">
@@ -931,10 +1001,12 @@
   hub: 'app',
   pathname: 'api',
   scene: 'success',
+  method: 'POST',
 })</code></pre><pre class="prettyprint source lang-javascript"><code>await client.switchScene({
   hub: 'app',
   pathname: 'api',
   scene: 'success',
+  method: 'POST',
   status: 304,
   delay: 2.5,
   headers: {
@@ -976,7 +1048,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line124">line 124</a>
+        <a href="datahub-nodejs-sdk.js.html">datahub-nodejs-sdk.js</a>, <a href="datahub-nodejs-sdk.js.html#line127">line 127</a>
     </li></ul></dd>
     
 
@@ -1055,6 +1127,8 @@
         
 
         
+        <th>Default</th>
+        
 
         <th class="last">Description</th>
     </tr>
@@ -1087,6 +1161,10 @@
                 </td>
             
 
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last">
@@ -1122,6 +1200,10 @@
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last">
                 <p>pathname.</p>
@@ -1155,6 +1237,10 @@
                 </td>
             
 
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last">
@@ -1192,6 +1278,10 @@
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last">
                 <p>rewrite response status 200-50x.</p>
@@ -1228,9 +1318,55 @@
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last">
                 <p>add response delay time in seconds.</p>
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>method</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>string</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    'ALL'
+                
+                </td>
+            
+
+            <td class="description last">
+                <p>api method, default is 'ALL'.</p>
                 
             </td>
         </tr>
@@ -1263,6 +1399,10 @@
                 </td>
             
 
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last">
@@ -1317,7 +1457,7 @@
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Aug 20 2018 15:06:00 GMT+0800 (CST) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Oct 25 2018 12:08:16 GMT+0800 (CST) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
