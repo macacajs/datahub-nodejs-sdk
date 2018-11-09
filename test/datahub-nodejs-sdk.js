@@ -114,4 +114,30 @@ describe('sdk test', function () {
       ]);
     });
   });
+
+  it('getSceneData', function () {
+    const client = new SDK();
+    const stub = sinon.stub(client, 'fetch').callsFake(function (...args) {
+      stub.restore();
+      return Promise.resolve({
+        json: () => Promise.resolve(args),
+      });
+    });
+    return client.getSceneData({
+      hub: 'app',
+      pathname: 'api',
+      scene: 'success',
+    }).then(data => {
+      assert.deepStrictEqual(data, [
+        'http://127.0.0.1:5678/api/sdk/scene_data?hub=app&pathname=api&scene=success',
+        {
+          method: 'GET',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      ]);
+    });
+  });
 });
