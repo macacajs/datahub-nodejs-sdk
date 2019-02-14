@@ -22,11 +22,11 @@
     "eslint-config-antife": "^1.0.0",
     "eslint-plugin-mocha": "4",
     "git-contributor": "^1.0.5",
+    "husky": "^1.3.1",
     "jsdoc": "^3.5.5",
     "minami": "^1.1.1",
     "mocha": "4",
     "nyc": "^11.4.1",
-    "pre-commit": "*",
     "sinon": "4"
   },
   "scripts": {
@@ -38,9 +38,11 @@
     "doc": "npm run clean:doc && jsdoc -c ./jsdoc.json",
     "contributor": "git-contributor"
   },
-  "pre-commit": [
-    "lint"
-  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
   "engines": {
     "node": ">=8"
   },
