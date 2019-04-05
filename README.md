@@ -1,4 +1,6 @@
-# [datahub-nodejs-sdk](https://github.com/macacajs/datahub-nodejs-sdk)
+# datahub-nodejs-sdk
+
+---
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
